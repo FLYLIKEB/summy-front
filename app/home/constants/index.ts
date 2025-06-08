@@ -82,8 +82,14 @@ export const DETAILED_SUMMARY = `1. 주요 내용
 
 export const SUPPORTED_FILE_TYPES = {
   'text/plain': '.txt',
+  'text/markdown': '.md',
+  'image/jpeg': '.jpg',
+  'image/png': '.png',
+  'image/gif': '.gif',
+  'application/pdf': '.pdf',
   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': '.xlsx',
-  'application/vnd.ms-excel': '.xls'
+  'application/vnd.ms-excel': '.xls',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document': '.docx'
 };
 
 export const DEFAULT_STATISTICS = {
@@ -131,4 +137,7 @@ export const RESPONSE_REASONS = {
     '불필요한 수식어나 장황한 설명 제거',
     '효율적인 커뮤니케이션'
   ]
-}; 
+};
+
+// 파일 크기 제한 (10MB)
+export const MAX_FILE_SIZE = 10 * 1024 * 1024; 
