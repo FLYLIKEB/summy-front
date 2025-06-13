@@ -8,6 +8,7 @@ interface SectionProps {
   className?: string
   background?: 'gradient-primary' | 'gradient-secondary' | 'gradient-dark' | 'transparent'
   spacing?: boolean
+  id?: string
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -15,6 +16,7 @@ export const Section: React.FC<SectionProps> = ({
   className,
   background = 'transparent',
   spacing = true,
+  id
 }) => {
   const backgroundStyles = {
     'gradient-primary': 'bg-gradient-to-b from-purple-900/30 to-transparent backdrop-blur-sm',
@@ -24,7 +26,7 @@ export const Section: React.FC<SectionProps> = ({
   }
 
   return (
-    <section className={cn(
+    <section id={id} className={cn(
       spacing && 'section-padding',
       backgroundStyles[background],
       'relative overflow-hidden',

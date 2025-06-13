@@ -2,62 +2,50 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Section, SectionTitle } from '@/components/common/Section'
 
-interface FeatureProps {
-  icon: React.ReactNode
-  title: string
-  description: string
+const features = [
+  {
+    title: '자동 요약',
+    description: '카카오톡, 인스타그램 등 다양한 메신저의 대화를 자동으로 요약해드립니다. 긴 대화 내용도 핵심만 쏙쏙 뽑아서 보여드려요.',
+    icon: '📝'
+  },
+  {
+    title: '맞춤형 답장',
+    description: '상대방의 말투와 감정을 분석해서 그에 맞는 답장을 제안해드립니다. 자연스러운 대화를 이어갈 수 있도록 도와드려요.',
+    icon: '💌'
+  },
+  {
+    title: '감정 분석',
+    description: '대화 속 감정을 분석해서 상대방의 기분과 상황을 파악할 수 있게 해드립니다. 더 섬세한 소통이 가능해져요.',
+    icon: '❤️'
+  },
+  {
+    title: '맥락 이해',
+    description: '이전 대화 내용을 기억하고 맥락을 이해해서 더 자연스러운 대화를 이어갈 수 있도록 도와드립니다.',
+    icon: '🧠'
+  }
+]
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
 }
 
-/**
- * 주요 기능 섹션 컴포넌트
- * 
- * 서비스의 핵심 기능과 제공 가치를 사용자에게 명확하게 전달하는 섹션입니다.
- * 반응형 그리드 레이아웃으로 구성되어 있으며, 각 기능은 아이콘, 제목, 설명으로 구성됩니다.
- */
-export default function Features() {
-  // 기능 데이터 배열
-  const features: FeatureProps[] = [
-    {
-      icon: <span className="text-4xl">💻</span>,
-      title: '어디서나 접근 가능',
-      description: '웹, 모바일, 데스크톱에서 언제 어디서나 대화 요약을 확인하세요.'
-    },
-    {
-      icon: <span className="text-4xl">🎯</span>,
-      title: '목적별 맞춤 요약',
-      description: '비즈니스, 학습, 개인 대화 등 상황에 맞는 맞춤형 요약을 제공합니다.'
-    },
-    {
-      icon: <span className="text-4xl">🌍</span>,
-      title: '다국어 커뮤니케이션',
-      description: '한국어는 물론 영어, 일본어, 중국어 등 10개 이상의 언어를 지원합니다.'
-    },
-    {
-      icon: <span className="text-4xl">⚡</span>,
-      title: '초고속 AI 처리',
-      description: '1,000개 이상의 메시지도 단 몇 초 내에 분석하고 요약합니다.'
-    },
-    {
-      icon: <span className="text-4xl">🔍</span>,
-      title: '인사이트 추출',
-      description: '중요 키워드, 결정사항, 할 일 등을 자동으로 분류하여 제공합니다.'
-    },
-    {
-      icon: <span className="text-4xl">💬</span>,
-      title: '맞춤형 답장 제안',
-      description: '대화 맥락과 상황을 분석해 가장 적절한 답변을 여러 스타일로 제안합니다.'
-    },
-    {
-      icon: <span className="text-4xl">🔒</span>,
-      title: '엔터프라이즈급 보안',
-      description: '군사급 암호화와 데이터 보호 정책으로 모든 대화를 안전하게 보호합니다.'
-    }
-  ]
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+}
 
+export default function Features() {
   return (
-    <section className="apple-section">
-      <div className="apple-section-container">
+    <section className="relative py-16 sm:py-24 bg-[#1a1a1f]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         <div className="text-center mb-10">
           <h2 
             className="apple-section-title cursor-pointer" 
@@ -67,64 +55,49 @@ export default function Features() {
                 featuresSection.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            title="주요 기능 섹션으로 이동"
+            title="핵심 기능 섹션으로 이동"
           >
-            주요 기능
+            핵심 기능
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
-            대화를 더 스마트하게 관리하는 Summy의 핵심 기능
+            Summy는 카카오톡이나 인스타 메시지 같은 텍스트 대화를 자동으로 요약하고, 상대방의 말투와 감정에 맞는 답장을 제안해주는 AI 서비스입니다.
           </p>
         </div>
-        
-        {/* 모바일 뷰: 슬라이드 레이아웃 */}
-        <div className="md:hidden flex flex-col gap-3">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="apple-card apple-card-hover">
-                <div className="apple-card-content">
-                  <div className="flex gap-3 items-start">
-                    <div className="bg-white-opacity-04 p-2.5 rounded-lg">
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-base font-medium mb-1">{feature.title}</h3>
-                      <p className="text-sm text-white/60">{feature.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* 데스크탑 뷰: 그리드 레이아웃 */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6"
+        >
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              variants={item}
+              className="group relative overflow-hidden rounded-xl bg-white/[0.03] backdrop-blur-md border border-white/[0.04] transition-all duration-300 shadow-sm hover:bg-white/[0.04]"
             >
-              <div className="apple-card apple-card-hover h-full">
-                <div className="apple-card-content flex flex-col h-full">
-                  <div className="bg-white-opacity-04 p-2.5 rounded-lg inline-block mb-3">
-                    {feature.icon}
+              <div className="p-5 lg:p-6">
+                <div className="flex items-start gap-5">
+                  {/* 아이콘 */}
+                  <div className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-lg overflow-hidden bg-white/[0.04] border border-white/[0.06] shadow-sm flex items-center justify-center">
+                    <span className="text-2xl lg:text-3xl">{feature.icon}</span>
                   </div>
-                  <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
-                  <p className="text-sm text-white/60">{feature.description}</p>
+
+                  {/* 내용 */}
+                  <div className="flex-1">
+                    <h3 className="text-xl font-medium text-white mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/70 text-sm">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

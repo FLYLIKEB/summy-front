@@ -50,7 +50,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <div className="space-y-5 md:space-y-6 mb-5 md:mb-6">
-            {/* 로고 영역: 애니메이션 효과와 그라데이션 적용 */}
+            {/* 로고 영역 */}
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -66,71 +66,55 @@ export default function Hero() {
               <Logo variant="text" size="xl" />
             </motion.h1>
 
-            {/* 주요 특징 설명: 순차적 페이드인 애니메이션 */}
+            {/* 주요 특징 설명 */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="space-y-3"
+              className="space-y-6"
             >
-              <div className="flex flex-col gap-1 sm:gap-2">
-                <div className="flex items-center justify-center gap-2 sm:gap-3">
-                  <span className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90">메시지 부담은 줄이고</span>
-                </div>
-                <div className="flex items-center justify-center gap-2 sm:gap-3">
-                  <span className="text-xl sm:text-2xl md:text-3xl font-medium text-white/90">소통 효율은 높이고</span>
-                </div>
+              <div className="flex flex-col gap-4">
+                <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
+                  일상 속에서 느낀 문제에서 시작된 프로젝트
+                </p>
+                <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
+                  연애나 썸을 타는 상황에서, 상대의 말을 어떻게 받아치고, 어떤 타이밍에 어떤 말을 해야 할지 고민하셨나요?
+                </p>
+                <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
+                  많은 사람들이 "답장을 여러 번 지웠다", "어떻게 말할지 너무 오래 고민한다", "대화 내용을 다시 보고 싶다"는 이야기를 했습니다.
+                </p>
               </div>
             </motion.div>
 
-            {/* 서비스 상세 설명: 이모티콘과 함께 핵심 기능 표시 */}
-            <motion.div 
+            {/* CTA 버튼 */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="space-y-2"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
             >
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <span className="text-xl">💬</span>
-                <span className="text-sm sm:text-base text-white/70">수백 개의 메시지를 단 몇 줄로 압축</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 sm:gap-3">
-                <span className="text-xl">✨</span>
-                <span className="text-sm sm:text-base text-white/70">상황에 최적화된 답장까지 AI가 제안</span>
-              </div>
+              <Link
+                href="/home"
+                className="apple-button apple-button-primary px-8 py-3 text-lg rounded-full"
+              >
+                시작하기
+              </Link>
+              <Link
+                href="#features"
+                className="apple-button apple-button-secondary px-8 py-3 text-lg rounded-full"
+              >
+                자세히 알아보기
+              </Link>
             </motion.div>
           </div>
-
-          {/* CTA 버튼 그룹: 회원가입 및 데모 링크 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
-          >
-            <Link 
-              href="/signup" 
-              className="apple-button apple-button-primary w-full sm:w-auto min-w-[180px]"
-            >
-              14일 무료로 시작하기
-            </Link>
-            <Link 
-              href="/home" 
-              className="apple-button apple-button-secondary w-full sm:w-auto min-w-[180px]"
-            >
-              실제 대화 요약해보기
-            </Link>
-          </motion.div>
         </div>
       </div>
 
+      {/* 배경 효과 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 pointer-events-none" />
+
       {/* 스크롤 다운 버튼 컴포넌트 */}
       <ScrollDownButton delay={0.8} />
-
-      {/* 배경 효과: 미묘한 그라데이션으로 깊이감 추가 */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03),transparent_70%)]"></div>
-      </div>
 
       {/* 스크롤 업 버튼: 페이지를 충분히 내렸을 때만 표시됨 */}
       <AnimatePresence>

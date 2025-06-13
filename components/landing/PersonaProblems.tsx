@@ -7,40 +7,40 @@ import Link from 'next/link'
 
 const personas = [
   {
-    name: '업무에 집중하는 팀장 A',
+    name: '연애 중인 직장인 A',
     emoji: '😩',
     image: '/images/personas/team-leader.svg',
-    problem: '하루 1000개 이상의 메시지 속에서 중요 정보를 놓치고 있어요.',
-    problemFull: '매일 쏟아지는 1000개 이상의 메시지에서 꼭 알아야 할 정보가 묻히고, 프로젝트 진행 상황을 파악하기 위해 너무 많은 시간을 소비하고 있어요.',
-    tags: ['#정보과부하', '#시간절약'],
-    solution: '메시지 우선순위화 및 핵심 정보 추출'
+    problem: '바쁜 업무 중에도 연인과의 대화를 놓치고 싶지 않아요.',
+    problemFull: '하루 종일 바쁜 업무 중에도 연인과의 대화를 놓치고 싶지 않은데, 메시지를 제대로 읽고 답장하기가 어려워요. 때로는 대화 맥락을 놓치기도 하고요.',
+    tags: ['#시간부족', '#대화맥락'],
+    solution: '대화 자동 요약 및 맞춤형 답장 제안'
   },
   {
-    name: '소통이 어려운 디자이너 B',
+    name: '썸 타는 대학생 B',
     emoji: '🫣',
     image: '/images/personas/designer.svg',
-    problem: '복잡한 피드백을 정리하고 명확한 답장을 작성하기가 어려워요.',
-    problemFull: '클라이언트와 동료들의 다양한 피드백을 체계적으로 정리하고, 내 의견을 명확하게 전달할 수 있는 답변 작성에 어려움을 겪고 있어요.',
-    tags: ['#소통개선', '#답변작성'],
-    solution: '피드백 정리 및 맞춤형 답장 문구 제안'
+    problem: '답장을 어떻게 해야 할지 고민이 많아요.',
+    problemFull: '상대방의 메시지에 어떻게 답장해야 할지 항상 고민이에요. 적절한 톤과 내용으로 답장하고 싶은데, 매번 시간이 오래 걸려요.',
+    tags: ['#답장고민', '#시간절약'],
+    solution: '상황에 맞는 답장 문구 추천'
   },
   {
-    name: '글로벌 팀과 일하는 개발자 C',
+    name: '연애 초보 C',
     emoji: '😮‍💨',
     image: '/images/personas/developer.svg',
-    problem: '시차와 언어 장벽으로 실시간 의사소통이 어렵고 컨텍스트 파악이 늦어요.',
-    problemFull: '해외 팀원들과의 시차 및 언어 장벽으로 인해 빠른 의사결정이 어렵고, 깨어있을 때 쌓인 대화 내용에서 핵심 사항만 빠르게 파악해야 해요.',
-    tags: ['#글로벌협업', '#컨텍스트이해'],
-    solution: '다국어 요약 및 자동 답장 제안'
+    problem: '대화를 어떻게 이어가야 할지 모르겠어요.',
+    problemFull: '연애 경험이 적어서 대화를 어떻게 이어가야 할지 모르겠어요. 상대방의 관심사에 맞는 대화 주제를 찾고, 자연스럽게 대화를 이어가고 싶어요.',
+    tags: ['#대화기술', '#관심사파악'],
+    solution: '대화 주제 추천 및 자연스러운 대화 이어가기'
   },
   {
-    name: '커뮤니케이션에 신경쓰는 대학생 D',
+    name: '바쁜 직장인 D',
     emoji: '😅',
     image: '/images/personas/student.svg',
-    problem: '그룹 프로젝트 대화가 너무 길어져서 핵심을 놓치고 적절한 반응이 어려워요.',
-    problemFull: '수십 명이 참여하는 그룹 프로젝트 채팅방에서 중요한 정보를 놓치지 않고, 상황에 맞는 적절한 메시지로 대응하고 싶은데 어려움을 겪고 있어요.',
+    problem: '대화 내용을 놓치고 적절한 반응이 어려워요.',
+    problemFull: '업무로 바쁜 와중에 연인과의 대화를 놓치고, 나중에 보니 중요한 내용을 놓쳤어요. 적절한 시점에 적절한 반응을 하고 싶은데 어려워요.',
     tags: ['#정보정리', '#답장고민'],
-    solution: '주요 논의 추적 및 상황별 답장 문구 추천'
+    solution: '대화 내용 요약 및 상황별 답장 추천'
   }
 ]
 
@@ -77,7 +77,7 @@ export default function PersonaProblems() {
             왜 필요한가요?
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
-            메시지와 미팅이 많을수록 소통 효율은 떨어집니다
+            연애와 썸에서의 소통은 더욱 특별한 주의가 필요합니다
           </p>
         </div>
 
@@ -229,7 +229,7 @@ export default function PersonaProblems() {
           className="sm:hidden fixed bottom-6 right-4 z-50"
         >
           <Link
-            href="/signup"
+            href="/home"
             className="px-4 py-2.5 bg-white/10 text-white rounded-lg text-sm font-medium transition-all hover:bg-white/15 backdrop-blur-md inline-flex items-center gap-2"
           >
             <span className="bg-white/10 p-1.5 rounded-full text-sm">🎮</span>
