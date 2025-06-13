@@ -134,7 +134,6 @@ export const getResponsePrompt = (message: string, options: {
 } = {}): string => {
   const {
     style = DEFAULT_VALUES.style as ResponseStyle,
-    userName = DEFAULT_VALUES.userName,
     participants = DEFAULT_VALUES.participants,
     keywords = DEFAULT_VALUES.keywords,
     time = DEFAULT_VALUES.time,
@@ -147,7 +146,6 @@ export const getResponsePrompt = (message: string, options: {
   
   return RESPONSE_PROMPT_TEMPLATE
     .replace('$STYLE_DESCRIPTION', styleDescription)
-    .replace('$USER_NAME', userName)
     .replace('$PARTICIPANTS', participants.toString())
     .replace('$KEYWORDS', keywords.toString())
     .replace('$TIME', time)

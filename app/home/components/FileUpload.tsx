@@ -96,7 +96,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileChange, className 
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3 sm:gap-4">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/[0.06] rounded-full">
+            {/* <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/[0.06] rounded-full">
               <Icon name="upload" className="w-5 h-5 sm:w-6 sm:h-6 text-white/70" />
             </div>
             <div className="text-center">
@@ -106,7 +106,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileChange, className 
               <p className="text-xs text-white/40">
                 텍스트 파일, 이미지 또는 PDF 파일 지원
               </p>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
