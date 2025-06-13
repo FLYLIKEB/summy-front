@@ -52,8 +52,8 @@ export default function Demo() {
             <div className="relative aspect-video rounded-t-xl overflow-hidden animate-fade-in">
     					<iframe 
                 className="w-full h-full object-cover"
-                src="https://www.youtube.com/embed/QHgyX24kOSE?autoplay=1" 
-                title="대한민국 대학생들이 만든 레전드 광고 ㅋㅋㅋ" 
+                src="https://youtu.be/MlzEKwIg8FM?si=uGmsN4mTu06nABJV" 
+                title="summy 데모 영상" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerPolicy="strict-origin-when-cross-origin" 
                 allowFullScreen
