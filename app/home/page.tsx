@@ -2,7 +2,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useFileUpload } from './hooks/useFileUpload'
+import { useFileUpload } from '@/hooks/useFileUpload'
 import { useSummarize } from './hooks/useSummarize'
 import { useResponse } from './hooks/useResponse'
 import { FileUpload } from './components/FileUpload'
@@ -55,21 +55,24 @@ export default function DemoPage() {
   // 파일 업로드 시 입력값 업데이트
   useEffect(() => {
     if (uploadedFile) {
-      console.log('uploadedFile 변경:', uploadedFile); // 디버깅용 로그
-      setInput(uploadedFile);
+      // File 객체를 텍스트로 변환
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        setInput(text);
+      };
+      reader.readAsText(uploadedFile);
     }
   }, [uploadedFile]);
 
   // 요약 버튼 클릭 핸들러
   const handleSummarizeClick = () => {
-    const content = uploadedFile || input;
-    handleSummarize(content);
+    handleSummarize(input);
   }
 
   // 답변 제안 버튼 클릭 핸들러
-  const handleSuggestResponseClick = () => {
-    const content = uploadedFile || input;
-    handleSuggestResponse(content);
+  const handleSuggestClick = () => {
+    handleSuggestResponse(input);
   }
 
   return (
@@ -117,7 +120,7 @@ export default function DemoPage() {
               isSummarizing={isSummarizing}
               isSuggesting={isSuggesting}
               onSummarize={handleSummarizeClick}
-              onSuggestResponse={handleSuggestResponseClick}
+              onSuggestResponse={handleSuggestClick}
             />
           </div>
 

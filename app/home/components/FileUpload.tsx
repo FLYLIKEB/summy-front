@@ -2,58 +2,44 @@ import React, { useRef, useState } from 'react'
 import { Card } from '@/components/common/card'
 import { Icon } from './common/Icon'
 import { Button } from '@/components/common/Button'
+import { SUPPORTED_FILE_TYPES } from '../constants'
+import { useFileUpload } from '@/hooks/useFileUpload'
 
 interface FileUploadProps {
   onFileChange?: (file: File | null) => void
   className?: string
 }
 
-export const FileUpload: React.FC<FileUploadProps> = ({ onFileChange, className = '' }) => {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
-  const [isDragging, setIsDragging] = useState(false)
+export const FileUpload: React.FC<FileUploadProps> = ({ 
+  onFileChange, 
+  className = ''
+}) => {
+  const {
+    isDragging,
+    uploadedFile,
+    fileName,
+    isUploading,
+    uploadProgress,
+    uploadError,
+    fileInputRef,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    handleFileInputChange,
+    handleRemoveFile
+  } = useFileUpload()
 
   const handleFileChange = (file: File | null) => {
-    setUploadedFile(file)
     if (onFileChange) {
       onFileChange(file)
     }
   }
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
-  }
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault()
-    setIsDragging(false)
-    const file = e.dataTransfer.files[0]
-    handleFileChange(file)
-  }
-
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
-    handleFileChange(file)
-  }
-
-  const handleRemoveFile = () => {
-    handleFileChange(null)
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
+  const handleAreaClick = () => {
+    if (!isUploading) {
+      fileInputRef.current?.click()
     }
   }
-
-  const handleAreaClick = () => {
-    fileInputRef.current?.click()
-  }
-
-  const fileName = uploadedFile?.name
 
   return (
     <div className={className}>
@@ -62,18 +48,29 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileChange, className 
         ref={fileInputRef}
         onChange={handleFileInputChange}
         className="hidden"
+        accept={Object.values(SUPPORTED_FILE_TYPES).join(',')}
+        disabled={isUploading}
       />
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={handleAreaClick}
-        className={`p-4 sm:p-6 border border-dashed rounded-lg transition-all cursor-pointer
+        className={`p-4 sm:p-6 border border-dashed rounded-lg transition-all
+          ${isUploading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
           ${isDragging 
             ? 'border-white/30 bg-white/[0.02]' 
             : 'border-white/[0.12] hover:border-white/20 hover:bg-white/[0.01]'
-          }`}
+          }
+          ${uploadError ? 'border-red-500/50' : ''}
+        `}
       >
+        {uploadError && (
+          <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+            <p className="text-red-400 text-sm">{uploadError}</p>
+          </div>
+        )}
+
         {uploadedFile ? (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -90,6 +87,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileChange, className 
                 handleRemoveFile()
               }}
               className="apple-button apple-button-secondary !p-1.5 rounded-full"
+              disabled={isUploading}
             >
               <Icon name="remove" className="w-4 h-4" />
             </Button>
@@ -97,16 +95,31 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onFileChange, className 
         ) : (
           <div className="flex flex-col items-center gap-3 sm:gap-4">
             <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/[0.06] rounded-full">
-              <Icon name="upload" className="w-5 h-5 sm:w-6 sm:h-6 text-white/70" />
+              {isUploading ? (
+                <div className="animate-spin">
+                  <Icon name="progress" className="w-5 h-5 sm:w-6 sm:h-6 text-white/70" />
+                </div>
+              ) : (
+                <Icon name="upload" className="w-5 h-5 sm:w-6 sm:h-6 text-white/70" />
+              )}
             </div>
             <div className="text-center">
               <p className="text-white/70 mb-1 text-xs sm:text-sm">
-                파일을 드래그하거나 클릭하여 업로드하세요
+                {isUploading ? `파일 업로드 중... ${uploadProgress}%` : '파일을 드래그하거나 클릭하여 업로드하세요'}
               </p>
               <p className="text-xs text-white/40">
                 텍스트 파일, 이미지 또는 PDF 파일 지원
               </p>
             </div>
+          </div>
+        )}
+
+        {isUploading && (
+          <div className="mt-4 w-full bg-white/[0.06] rounded-full h-1.5">
+            <div 
+              className="bg-white/70 h-1.5 rounded-full transition-all duration-300"
+              style={{ width: `${uploadProgress}%` }}
+            />
           </div>
         )}
       </div>

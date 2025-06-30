@@ -1,3 +1,5 @@
+import { SUPPORTED_FILE_TYPES } from './constants/index'
+
 export const RESPONSE_STYLES = {
   formal: {
     label: '🎩 정중한',
@@ -32,13 +34,6 @@ export const RESPONSE_REASONS = {
 } as const;
 
 export type ResponseStyle = keyof typeof RESPONSE_STYLES;
-
-// 파일 업로드 관련 상수
-export const SUPPORTED_FILE_TYPES = [
-  'text/plain',
-  'application/msword',
-  'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-];
 
 // 예시 대화 내용
 export const EXAMPLE_CONVERSATION = `안녕하세요, 오늘 회의 주제는 프로젝트 진행 상황 공유입니다.
@@ -78,4 +73,6 @@ export const DEFAULT_KEYWORDS = [
   '기능 개발',
   'UI/UX 개선',
   '프로젝트 관리'
-]; 
+];
+
+export { SUPPORTED_FILE_TYPES }; 
